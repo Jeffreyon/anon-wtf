@@ -6,6 +6,7 @@ import LinkRegular from "../components/LinkRegular";
 import pb from "../lib/pocketbase";
 import SignInMethod from "../components/SignInMethod";
 import ErrorText from "../components/ErrorText";
+import PromptDrawer from "../components/PromptDrawer";
 
 function LogIn() {
     const [drawerOpen, toggleDrawer] = useState(false);
@@ -51,79 +52,72 @@ function LogIn() {
                     <LinkRegular label="Sign up" linkTo="/sign-up" />
                 </p>
                 {drawerOpen && (
-                    <EmailSignIn
+                    <PromptDrawer
                         handleClose={() => toggleDrawer(false)}
-                        submitHandler={logInUser}
-                        isSubmitting={isSubmitting}
-                    />
+                        title="Log in with email"
+                        isSubmitting={isSubmitting}>
+                        <LogInForm
+                            submitHandler={logInUser}
+                            isSubmitting={isSubmitting}
+                        />
+                    </PromptDrawer>
                 )}
             </div>
         </div>
     );
 }
 
-function EmailSignIn({ handleClose, submitHandler, isSubmitting }) {
+function LogInForm({ submitHandler, isSubmitting }) {
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
+
     return (
-        <div className="h-screen absolute bg-black bg-opacity-60 top-0 right-0 left-0 flex items-end">
-            <form
-                onSubmit={handleSubmit(submitHandler)}
-                className=" w-full bg-neutral-800 border-t-4 border-lime-700 flex flex-col justify-between p-4 pb-8">
-                <div>
-                    <div className="flex justify-between items-baseline">
-                        <p className="uppercase text-neutral-300 tracking-wider">
-                            Log in with Email
-                        </p>
-                        <button onClick={handleClose}>Close</button>
-                    </div>
-                    <div className="my-6">
-                        <fieldset className="flex flex-col items-start">
-                            <label className=" text-neutral-300" htmlFor="">
-                                Email
-                            </label>
-                            <input
-                                className="w-full mt-2 p-2 bg-neutral-600 focus:bg-neutral-200 focus:text-neutral-900 rounded"
-                                type="email"
-                                {...register("email", { required: true })}
-                            />
-                            {errors.email?.type === "required" && (
-                                <ErrorText error="Valid email required" />
-                            )}
-                        </fieldset>
-                        <fieldset className="flex flex-col items-start mt-4">
-                            <label className=" text-neutral-300" htmlFor="">
-                                Password
-                            </label>
-                            <input
-                                className="w-full mt-2 p-2 bg-neutral-600 focus:bg-neutral-200 focus:text-neutral-900 rounded"
-                                type="password"
-                                {...register("password", {
-                                    required: true,
-                                    minLength: 8,
-                                })}
-                            />
-                            {errors.password?.type === "required" && (
-                                <ErrorText error="Password required" />
-                            )}
-                            {errors.password?.type === "minLength" && (
-                                <ErrorText error="Password must be 8 characters or more" />
-                            )}
-                        </fieldset>
-                    </div>
-                </div>
-                <div className="ml-auto">
-                    <Button
-                        type="submit"
-                        label={isSubmitting ? "Logging in..." : "Log in"}
-                        disabled={isSubmitting}
+        <form onSubmit={handleSubmit(submitHandler)} className="flex flex-col">
+            <div className="my-6">
+                <fieldset className="flex flex-col items-start">
+                    <label className=" text-neutral-300" htmlFor="">
+                        Email
+                    </label>
+                    <input
+                        className="w-full mt-2 p-2 bg-neutral-600 focus:bg-neutral-200 focus:text-neutral-900 rounded"
+                        type="email"
+                        {...register("email", { required: true })}
                     />
-                </div>
-            </form>
-        </div>
+                    {errors.email?.type === "required" && (
+                        <ErrorText error="Valid email required" />
+                    )}
+                </fieldset>
+                <fieldset className="flex flex-col items-start mt-4">
+                    <label className=" text-neutral-300" htmlFor="">
+                        Password
+                    </label>
+                    <input
+                        className="w-full mt-2 p-2 bg-neutral-600 focus:bg-neutral-200 focus:text-neutral-900 rounded"
+                        type="password"
+                        {...register("password", {
+                            required: true,
+                            minLength: 8,
+                        })}
+                    />
+                    {errors.password?.type === "required" && (
+                        <ErrorText error="Password required" />
+                    )}
+                    {errors.password?.type === "minLength" && (
+                        <ErrorText error="Password must be 8 characters or more" />
+                    )}
+                </fieldset>
+            </div>
+            <div className="ml-auto">
+                <Button
+                    type="submit"
+                    label={isSubmitting ? "Logging in..." : "Log in"}
+                    disabled={isSubmitting}
+                />
+            </div>
+        </form>
     );
 }
 

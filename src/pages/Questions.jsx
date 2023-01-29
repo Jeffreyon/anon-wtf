@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import simpleSvgPlaceholder from "@cloudfour/simple-svg-placeholder";
 import Button from "../components/Button";
 import PromptDrawer from "../components/PromptDrawer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import pb from "../lib/pocketbase";
 import LoadingComponent from "../components/LoadingComponent";
 
@@ -14,12 +14,16 @@ function Questions() {
 
     const user_id = pb.authStore.model.id;
 
+    const navigate = useNavigate();
+
     // get questions from db
     useEffect(() => {
         (async () => {
             try {
                 // return all questions belonging to the current user
-                let records = await pb.collection("questions").getList(1, 50);
+                let records = await pb.collection("questions").getList(1, 50, {
+                    sort: "-created",
+                });
 
                 setQuestions(() => {
                     return records.items.map((item) => ({
@@ -46,6 +50,7 @@ function Questions() {
 
         let record = await pb.collection("questions").create(data);
 
+        // TODO: subscribe to changes in db, but set state for now
         setQuestions((questions) => {
             return [
                 ...questions,
@@ -56,6 +61,7 @@ function Questions() {
             ];
         });
         setIsSubmitting(false);
+        return navigate(`/q/${record.id}`);
     };
 
     return (
@@ -63,7 +69,7 @@ function Questions() {
             <div className="px-4">
                 {loading ? (
                     <LoadingComponent loading={loading} />
-                ) : questions ? (
+                ) : questions.length ? (
                     <AllQuestions
                         handleClick={() => toggleDrawer(true)}
                         questions={questions}

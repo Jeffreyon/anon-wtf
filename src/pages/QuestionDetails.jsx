@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import pb from "../lib/pocketbase";
-import simpleSvgPlaceholder from "@cloudfour/simple-svg-placeholder";
 import Button from "../components/Button";
 import LoadingComponent from "../components/LoadingComponent";
-import ButtonLink from "../components/ButtonLink";
+import plane from "../assets/rocket.png";
+import useCopyToClipboard from "../lib/useCopyToClipboard";
 
 function QuestionDetails() {
     // get parameters from react router
@@ -29,6 +29,7 @@ function QuestionDetails() {
                 // fetch replies
                 let replies = await pb.collection("replies").getFullList(200, {
                     filter: `question='${qid}'`,
+                    sort: "-created",
                 });
 
                 replies = replies.map((reply) => {
@@ -66,8 +67,8 @@ function QuestionDetails() {
                         <LoadingComponent loading={loading} />
                     ) : replies.length ? (
                         <>
-                            <h3 className=" text-xl font-semibold text-neutral-300">
-                                Replies
+                            <h3 className=" text-xl font-semibold text-neutral-300 mb-4">
+                                {replies.length} Replies
                             </h3>
 
                             {replies.map((reply, ii) => (
@@ -83,39 +84,13 @@ function QuestionDetails() {
     );
 }
 
-function useCopyToClipboard(text) {
-    const [copied, setCopied] = useState(false);
-
-    const copyToClipboard = async () => {
-        setCopied(true);
-
-        try {
-            await navigator.clipboard.writeText(text);
-        } catch (error) {
-            console.log("Can't copy to clipboard");
-        }
-
-        setTimeout(() => {
-            setCopied(false);
-        }, 2000);
-    };
-
-    return [copied, copyToClipboard];
-}
-
 function EmptyState({ url }) {
     const [copied, copyToClipboard] = useCopyToClipboard(url);
 
     return (
         <div className=" px-4 pt-6 flex flex-col mt-10 text-center border-t border-neutral-700">
             <div className="mx-auto">
-                <img
-                    src={simpleSvgPlaceholder({
-                        width: 200,
-                        height: 200,
-                    })}
-                    alt=""
-                />
+                <img src={plane} className="h-72" alt="" />
             </div>
             <h1 className=" text-xl mt-4 font-bold leading-10">
                 No replies yet

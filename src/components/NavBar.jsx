@@ -1,8 +1,7 @@
 import LinkRegular from "./LinkRegular";
 import { useState } from "react";
 import pb from "../lib/pocketbase";
-import Button from "./Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Navbar() {
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -21,17 +20,19 @@ function Navbar() {
         <div>
             <div className="py-3 px-4 sm:p-3 flex justify-between items-center max-w-6xl mx-auto">
                 <div>
-                    <p className=" font-mono font-semibold text-2xl text-white">
+                    <Link
+                        to="/"
+                        className=" font-mono font-semibold text-2xl text-white">
                         <span>anon</span>
                         <span className="text-lime-400">.wtf</span>
-                    </p>
+                    </Link>
                 </div>
                 <div className="hidden md:block">
                     <NavLinks />
                 </div>
                 <div className="md:hidden">
                     <button onClick={toggleNavLinks}>
-                        {isMobileNavOpen ? "Close" : "Open"}
+                        {isMobileNavOpen ? "Close" : "Menu"}
                     </button>
                 </div>
             </div>

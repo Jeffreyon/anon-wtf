@@ -4,6 +4,8 @@ import pb from "../lib/pocketbase";
 import Button from "../components/Button";
 import PromptDrawer from "../components/PromptDrawer";
 import LoadingComponent from "../components/LoadingComponent";
+import useCopyToClipboard from "../lib/useCopyToClipboard";
+import { ToastContainer, toast } from "react-toastify";
 
 function ReplyQuestion() {
     // get parameters from react router
@@ -14,6 +16,10 @@ function ReplyQuestion() {
     const [loading, setLoading] = useState(true);
     const [drawerOpen, toggleDrawer] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // for the clipboard
+    let url = `${import.meta.env.VITE_SITE_BASE_URL}/r/${qid}`;
+    const [copied, copyToClipboard] = useCopyToClipboard(url);
 
     // fetch question details from database
     useEffect(() => {
@@ -42,6 +48,15 @@ function ReplyQuestion() {
             question: qid,
         });
         setIsSubmitting(false);
+        toast.success("Reply sent", {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "light",
+        });
     };
 
     return (
@@ -57,9 +72,15 @@ function ReplyQuestion() {
                             <p className="uppercase text-neutral-300 tracking-wider">
                                 Share
                             </p>
-                            <div>Share buttons</div>
+                            <div>
+                                <button
+                                    className=" font-semibold text-lime-500 hover:text-lime-600 transition-colors delay-75 p-1 flex"
+                                    onClick={copyToClipboard}>
+                                    {copied ? "Copied" : "Copy link"}
+                                </button>
+                            </div>
                         </div>
-                        <div className="mt-10 pt-6 flex flex-col text-center border-t border-neutral-700">
+                        <div className="mt-10 pt-10 flex flex-col text-center border-t border-neutral-700">
                             <Button
                                 onClick={() => toggleDrawer(true)}
                                 label="Reply anonymously"
@@ -83,6 +104,7 @@ function ReplyQuestion() {
                     />
                 </PromptDrawer>
             )}
+            <ToastContainer />
         </div>
     );
 }
