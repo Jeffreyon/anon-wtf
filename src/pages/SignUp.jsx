@@ -35,6 +35,7 @@ function SignUp() {
             navigate("/questions");
         } catch (error) {
             alert("This email is already being used, try another one");
+            setIsSubmitting(false);
         }
     };
 

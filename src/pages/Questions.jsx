@@ -4,10 +4,13 @@ import Button from "../components/Button";
 import PromptDrawer from "../components/PromptDrawer";
 import { Link } from "react-router-dom";
 import pb from "../lib/pocketbase";
+import LoadingComponent from "../components/LoadingComponent";
 
 function Questions() {
-    const [questions, setQuestions] = useState([]);
+    const [questions, setQuestions] = useState();
+    const [loading, setLoading] = useState(true);
     const [drawerOpen, toggleDrawer] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const user_id = pb.authStore.model.id;
 
@@ -16,9 +19,7 @@ function Questions() {
         (async () => {
             try {
                 // return all questions belonging to the current user
-                let records = await pb.collection("questions").getList(1, 50, {
-                    filter: `user='${user_id}'`,
-                });
+                let records = await pb.collection("questions").getList(1, 50);
 
                 setQuestions(() => {
                     return records.items.map((item) => ({
@@ -26,6 +27,8 @@ function Questions() {
                         text: item.text,
                     }));
                 });
+
+                setLoading(false);
             } catch (error) {
                 console.log(error);
             }
@@ -33,6 +36,8 @@ function Questions() {
     }, []);
 
     const handleSubmit = async (q) => {
+        setIsSubmitting(true);
+
         // add question to database
         let data = {
             text: q,
@@ -46,16 +51,19 @@ function Questions() {
                 ...questions,
                 {
                     id: record.id,
-                    text: record.id,
+                    text: record.text,
                 },
             ];
         });
+        setIsSubmitting(false);
     };
 
     return (
         <div className="mx-auto">
             <div className="px-4">
-                {questions.length ? (
+                {loading ? (
+                    <LoadingComponent loading={loading} />
+                ) : questions ? (
                     <AllQuestions
                         handleClick={() => toggleDrawer(true)}
                         questions={questions}
@@ -67,10 +75,47 @@ function Questions() {
             {drawerOpen && (
                 <PromptDrawer
                     handleClose={() => toggleDrawer(false)}
-                    handleSubmit={handleSubmit}
-                />
+                    title="Ask a quesion">
+                    <QuestionTextBox
+                        handleClose={() => toggleDrawer(false)}
+                        handleSubmit={handleSubmit}
+                        isSubmitting={isSubmitting}
+                    />
+                </PromptDrawer>
             )}
         </div>
+    );
+}
+
+function QuestionTextBox({ handleSubmit, handleClose, isSubmitting }) {
+    const [question, setQuestion] = useState("");
+
+    const handleChange = (e) => {
+        setQuestion(e.target.value);
+    };
+
+    const checkQuestion = () => {
+        if (question.length) {
+            handleClose();
+            return handleSubmit(question);
+        }
+    };
+
+    return (
+        <>
+            <textarea
+                type="text"
+                onChange={handleChange}
+                value={question}
+                placeholder="Your question?"
+                className=" my-6 bg-transparent text-xl placeholder:text-neutral-600 w-full h-56 focus:outline-none"></textarea>
+            <div className="ml-auto">
+                <Button
+                    onClick={checkQuestion}
+                    label={isSubmitting ? "Posting..." : "Post"}
+                />
+            </div>
+        </>
     );
 }
 

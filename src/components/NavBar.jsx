@@ -46,6 +46,7 @@ function Navbar() {
                     ) : (
                         <NavLinks />
                     )}
+                    <LinkRegular label="About" linkTo="/about" />
                 </div>
             </div>
         </div>
@@ -55,6 +56,7 @@ function Navbar() {
 function NavLinks() {
     return (
         <>
+            <LinkRegular label="Home" linkTo="/" />
             <LinkRegular label="Get started" linkTo="/sign-up" />
             <LinkRegular label="Log in" linkTo="/log-in" />
         </>

@@ -2,8 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoggedIn from "./components/LoggedIn";
 import RequiresAuth from "./components/RequiresAuth";
 import Layout from "./layouts/Layout";
+import About from "./pages/About";
 import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
+import NotFound from "./pages/NotFound";
 import QuestionDetails from "./pages/QuestionDetails";
 import Questions from "./pages/Questions";
 import ReplyQuestion from "./pages/ReplyQuestion";
@@ -15,6 +17,7 @@ function App() {
             <Routes>
                 <Route element={<Layout />}>
                     <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
                     <Route
                         path="/sign-up"
                         element={
@@ -49,6 +52,7 @@ function App() {
                     />
                     <Route path="/r/:qid" element={<ReplyQuestion />} />
                 </Route>
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </Router>
     );

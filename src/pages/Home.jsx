@@ -1,5 +1,5 @@
 import simpleSvgPlaceholder from "@cloudfour/simple-svg-placeholder";
-import Button from "../components/Button";
+import ButtonLink from "../components/ButtonLink";
 
 function Home() {
     return (
@@ -21,7 +21,7 @@ function Home() {
                     Get anonymous replies from your friends and audience.
                     Perfect for feedback and trivia games.
                 </p>
-                <Button label="Ask a question" />
+                <ButtonLink label="Ask a question" linkTo="/sign-up" />
             </div>
         </div>
     );
