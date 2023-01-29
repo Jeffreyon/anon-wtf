@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Inter";
+    src: url("./assets/Inter-variable.ttf");
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    @apply bg-black;
+    @apply text-white;
+}
