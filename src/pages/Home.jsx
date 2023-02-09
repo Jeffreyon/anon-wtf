@@ -5,8 +5,8 @@ import iphoneImage from "../assets/iphone.png";
 function Home() {
     return (
         <div className="mx-auto">
-            <div className=" px-4 flex flex-col gap-6 mt-24 text-center">
-                <div className="mx-auto bg-red-100 w-100 h-96 overflow-hidden rounded-md">
+            <div className=" px-4 flex flex-col gap-6 mt-12 text-center">
+                <div className="mx-auto bg-rose-100 w-100 h-96 scale-95  overflow-hidden rounded-lg">
                     <img
                         src={iphoneImage}
                         alt="iphone"
