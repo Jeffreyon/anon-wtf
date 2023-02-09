@@ -67,8 +67,9 @@ function QuestionDetails() {
                         <LoadingComponent loading={loading} />
                     ) : replies.length ? (
                         <>
-                            <h3 className=" text-xl font-semibold text-neutral-300 mb-4">
-                                {replies.length} Replies
+                            <h3 className=" text-xl font-semibold text-neutral-300">
+                                {replies.length}{" "}
+                                {replies.length === 1 ? "Reply" : "Replies"}
                             </h3>
 
                             {replies.map((reply, ii) => (

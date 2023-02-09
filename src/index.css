@@ -16,3 +16,9 @@ body {
 :root {
     --animate-duration: 0.1s;
 }
+
+.home-image {
+    transform: scale(2.5);
+    position: relative;
+    top: 240px;
+}

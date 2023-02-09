@@ -6,8 +6,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "preview": "vite preview",
-        "server": "cd pb && pocketbase serve"
+        "preview": "vite preview"
     },
     "dependencies": {
         "@cloudfour/simple-svg-placeholder": "^1.1.0",

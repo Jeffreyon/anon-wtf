@@ -1,17 +1,16 @@
 import simpleSvgPlaceholder from "@cloudfour/simple-svg-placeholder";
 import ButtonLink from "../components/ButtonLink";
+import iphoneImage from "../assets/iphone.png";
 
 function Home() {
     return (
         <div className="mx-auto">
             <div className=" px-4 flex flex-col gap-6 mt-24 text-center">
-                <div className="mx-auto">
+                <div className="mx-auto bg-red-100 w-100 h-96 overflow-hidden rounded-md">
                     <img
-                        src={simpleSvgPlaceholder({
-                            width: 250,
-                            height: 250,
-                        })}
-                        alt=""
+                        src={iphoneImage}
+                        alt="iphone"
+                        className=" home-image"
                     />
                 </div>
                 <h1 className=" text-3xl font-bold leading-10">
