@@ -65,8 +65,8 @@ function Questions() {
     };
 
     return (
-        <div className="mx-auto">
-            <div className="px-4">
+        <>
+            <div>
                 {loading ? (
                     <LoadingComponent loading={loading} />
                 ) : questions.length ? (
@@ -89,7 +89,7 @@ function Questions() {
                     />
                 </PromptDrawer>
             )}
-        </div>
+        </>
     );
 }
 

@@ -22,3 +22,10 @@ body {
     position: relative;
     top: 240px;
 }
+
+@media screen(md) {
+    .home-image {
+        transform: scale(2);
+        top: 180px;
+    }
+}

@@ -47,8 +47,8 @@ function QuestionDetails() {
     }, []);
 
     return (
-        <div className="mx-auto">
-            <div className="px-4 mt-16">
+        <>
+            <div className="mt-16">
                 <h1 className=" text-3xl font-bold leading-10">{q}</h1>
                 <div className="mt-8 flex justify-between">
                     <p className="uppercase text-neutral-300 tracking-wider">
@@ -81,7 +81,7 @@ function QuestionDetails() {
                     )}
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

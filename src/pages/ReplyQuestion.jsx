@@ -60,17 +60,17 @@ function ReplyQuestion() {
     };
 
     return (
-        <div className="mx-auto">
-            <div className="px-4 mt-16">
+        <>
+            <div className="mt-16">
                 {loading ? (
                     <LoadingComponent loading={loading} />
                 ) : (
                     <>
                         <p className="mb-4 text-amber-300">{userName} asked,</p>
                         <h1 className=" text-3xl font-bold leading-10">{q}</h1>
-                        <div className="mt-8 flex justify-between">
-                            <p className="uppercase text-neutral-300 tracking-wider">
-                                Share
+                        <div className="mt-8 flex items-baseline">
+                            <p className="uppercase text-neutral-300 tracking-wider mr-2">
+                                Share:
                             </p>
                             <div>
                                 <button
@@ -80,12 +80,12 @@ function ReplyQuestion() {
                                 </button>
                             </div>
                         </div>
-                        <div className="mt-10 pt-10 flex flex-col text-center border-t border-neutral-700">
+                        <div className="mt-10 pt-10 text-center border-t border-neutral-700">
                             <Button
                                 onClick={() => toggleDrawer(true)}
                                 label="Reply anonymously"
                             />
-                            <p className="mt-3 text-neutral-500">
+                            <p className="mt-4 text-neutral-500">
                                 No sign in needed
                             </p>
                         </div>
@@ -105,7 +105,7 @@ function ReplyQuestion() {
                 </PromptDrawer>
             )}
             <ToastContainer />
-        </div>
+        </>
     );
 }
 

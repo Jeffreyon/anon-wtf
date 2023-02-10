@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoggedIn from "./components/LoggedIn";
 import RequiresAuth from "./components/RequiresAuth";
 import Layout from "./layouts/Layout";
+import AuthLayout from "./layouts/AuthLayout";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
@@ -18,22 +19,25 @@ function App() {
                 <Route element={<Layout />}>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
-                    <Route
-                        path="/sign-up"
-                        element={
-                            <LoggedIn>
-                                <SignUp />
-                            </LoggedIn>
-                        }
-                    />
-                    <Route
-                        path="/log-in"
-                        element={
-                            <LoggedIn>
-                                <LogIn />
-                            </LoggedIn>
-                        }
-                    />
+                    <Route element={<AuthLayout />}>
+                        <Route
+                            path="/sign-up"
+                            element={
+                                <LoggedIn>
+                                    <SignUp />
+                                </LoggedIn>
+                            }
+                        />
+                        <Route
+                            path="/log-in"
+                            element={
+                                <LoggedIn>
+                                    <LogIn />
+                                </LoggedIn>
+                            }
+                        />
+                    </Route>
+
                     <Route
                         path="/questions"
                         element={

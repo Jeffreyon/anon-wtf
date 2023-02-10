@@ -27,8 +27,13 @@ function Navbar() {
                         <span className="text-lime-400">.wtf</span>
                     </Link>
                 </div>
-                <div className="hidden md:block">
-                    <NavLinks />
+                <div className="hidden md:flex gap-4">
+                    {pb.authStore.isValid ? (
+                        <NavLoggedIn logoutHandler={logout} />
+                    ) : (
+                        <NavLinks />
+                    )}
+                    <LinkRegular label="About" linkTo="/about" />
                 </div>
                 <div className="md:hidden">
                     <button onClick={toggleNavLinks}>
