@@ -87,7 +87,7 @@ function SignUpForm({ submitHandler, isSubmitting }) {
             <div className="my-6">
                 <fieldset className="flex flex-col items-start">
                     <label className=" text-neutral-300" htmlFor="">
-                        Full Name
+                        Display Name
                     </label>
                     <input
                         className="w-full mt-2 p-2 bg-neutral-600 focus:bg-neutral-200 focus:text-neutral-900 rounded"
