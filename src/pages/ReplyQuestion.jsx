@@ -76,9 +76,7 @@ function ReplyQuestion() {
                     <LoadingComponent loading={loading} />
                 ) : replySent ? (
                     <div className="bg-neutral-900 px-4 py-6 sm:p-8 rounded-2xl border border-neutral-700 text-center max-w-sm mx-auto">
-                        <p className="mb-4 text-amber-300">
-                            Now it's your turn!
-                        </p>
+                        <p className="mb-4 text-amber-300">Reply sent!</p>
                         <h1 className=" text-3xl font-bold leading-10">
                             Curious to know what people really think?
                         </h1>
@@ -99,8 +97,8 @@ function ReplyQuestion() {
                                 {q}
                             </h1>
                             <div className="mt-8 flex items-baseline justify-between">
-                                <p className="uppercase text-neutral-300 tracking-wider mr-2">
-                                    Share:
+                                <p className="uppercase text-sm text-neutral-300 tracking-wider mr-2">
+                                    Share
                                 </p>
                                 <div>
                                     <button

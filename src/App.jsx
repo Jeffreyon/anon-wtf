@@ -45,15 +45,15 @@ function App() {
                                 </RequiresAuth>
                             }
                         />
+                        <Route
+                            path="/questions"
+                            element={
+                                <RequiresAuth>
+                                    <Questions />
+                                </RequiresAuth>
+                            }
+                        />
                     </Route>
-                    <Route
-                        path="/questions"
-                        element={
-                            <RequiresAuth>
-                                <Questions />
-                            </RequiresAuth>
-                        }
-                    />
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>

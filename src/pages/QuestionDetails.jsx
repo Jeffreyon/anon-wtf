@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import pb from "../lib/pocketbase";
 import Button from "../components/Button";
 import LoadingComponent from "../components/LoadingComponent";
-import plane from "../assets/rocket.png";
 import useCopyToClipboard from "../lib/useCopyToClipboard";
 
 function QuestionDetails() {
@@ -51,8 +50,8 @@ function QuestionDetails() {
             <div className="mt-8 sm:mt-16 bg-neutral-900 px-4 py-6 sm:p-8 rounded-2xl border border-neutral-700">
                 <p className="mb-4 text-amber-300">Question</p>
                 <h1 className=" text-3xl font-bold leading-10">{q}</h1>
-                <div className="mt-8 flex justify-between">
-                    <p className="uppercase text-neutral-300 tracking-wider">
+                <div className="mt-8 flex justify-between items-baseline">
+                    <p className="uppercase text-sm text-neutral-300 tracking-wider">
                         Share
                     </p>
                     <div>
@@ -92,17 +91,12 @@ function EmptyState({ url }) {
 
     return (
         <div className=" px-4 flex flex-col mt-10 text-center ">
-            <div className="mx-auto">
-                <img src={plane} className="h-52" alt="" />
-            </div>
-            <h1 className=" text-xl mt-4 font-bold leading-10">
-                No replies yet
-            </h1>
+            <h1 className=" text-xl font-bold leading-10">No replies yet</h1>
             <p className=" text-neutral-500">
                 Share this question to your audience to get anonymous replies
                 from them
             </p>
-            <div className="mt-3">
+            <div className="mt-5">
                 <Button
                     label={copied ? "Copied" : "Copy link"}
                     onClick={() => copyToClipboard(url)}

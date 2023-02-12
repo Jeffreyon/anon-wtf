@@ -150,8 +150,11 @@ function AllQuestions({ questions, handleClick }) {
                     <QuestionCard question={q} key={ii} />
                 ))}
             </div>
-            <div className="mt-4 fixed bottom-8 right-4">
-                <Button onClick={() => handleClick()} label="Create" />
+            <div className="mt-8 text-center">
+                <Button
+                    onClick={() => handleClick()}
+                    label="Ask new question"
+                />
             </div>
         </div>
     );
@@ -159,16 +162,7 @@ function AllQuestions({ questions, handleClick }) {
 
 function EmptyState({ handleClick }) {
     return (
-        <div className=" px-4 flex flex-col gap-6 mt-12 text-center max-w-md mx-auto">
-            <div className="mx-auto">
-                <img
-                    src={simpleSvgPlaceholder({
-                        width: 250,
-                        height: 250,
-                    })}
-                    alt=""
-                />
-            </div>
+        <div className=" px-4 flex flex-col gap-6 mt-24 text-center max-w-md mx-auto">
             <h1 className=" text-3xl font-bold leading-10">
                 Ask your first question!
             </h1>
@@ -176,7 +170,7 @@ function EmptyState({ handleClick }) {
                 Listen to secrets, find ways you can improve yourself or get
                 opinions on anything, anonymously
             </p>
-            <Button onClick={() => handleClick()} label="Create" />
+            <Button onClick={() => handleClick()} label="Ask a question" />
         </div>
     );
 }
