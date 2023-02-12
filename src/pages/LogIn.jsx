@@ -40,6 +40,7 @@ function LogIn() {
             alert(
                 "Invalid login details, make sure your email or password is correct"
             );
+            setIsSubmitting(false);
         }
     };
 

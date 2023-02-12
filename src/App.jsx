@@ -36,8 +36,16 @@ function App() {
                                 </LoggedIn>
                             }
                         />
+                        <Route path="/r/:qid" element={<ReplyQuestion />} />
+                        <Route
+                            path="/q/:qid"
+                            element={
+                                <RequiresAuth>
+                                    <QuestionDetails />
+                                </RequiresAuth>
+                            }
+                        />
                     </Route>
-
                     <Route
                         path="/questions"
                         element={
@@ -46,17 +54,6 @@ function App() {
                             </RequiresAuth>
                         }
                     />
-                    <Route
-                        path="/q/:qid"
-                        element={
-                            <RequiresAuth>
-                                <QuestionDetails />
-                            </RequiresAuth>
-                        }
-                    />
-                    <Route element={<AuthLayout />}>
-                        <Route path="/r/:qid" element={<ReplyQuestion />} />
-                    </Route>
                 </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>

@@ -48,7 +48,8 @@ function QuestionDetails() {
 
     return (
         <>
-            <div className="mt-16">
+            <div className="mt-8 sm:mt-16 bg-neutral-900 px-4 py-6 sm:p-8 rounded-2xl border border-neutral-700">
+                <p className="mb-4 text-amber-300">Question</p>
                 <h1 className=" text-3xl font-bold leading-10">{q}</h1>
                 <div className="mt-8 flex justify-between">
                     <p className="uppercase text-neutral-300 tracking-wider">
@@ -62,24 +63,25 @@ function QuestionDetails() {
                         </button>
                     </div>
                 </div>
-                <div className="mt-10">
-                    {loading ? (
-                        <LoadingComponent loading={loading} />
-                    ) : replies.length ? (
-                        <>
-                            <h3 className=" text-xl font-semibold text-neutral-300">
-                                {replies.length}{" "}
-                                {replies.length === 1 ? "Reply" : "Replies"}
-                            </h3>
-
+            </div>
+            <div className="mt-10 sm:px-8">
+                {loading ? (
+                    <LoadingComponent loading={loading} />
+                ) : replies.length ? (
+                    <>
+                        <h3 className=" text-xl font-semibold text-neutral-300">
+                            {replies.length} anonymous{" "}
+                            {replies.length === 1 ? "reply" : "replies"}
+                        </h3>
+                        <div className="divide-y divide-neutral-700 mt-3 text-neutral-300">
                             {replies.map((reply, ii) => (
                                 <ReplyCard reply={reply.text} key={ii} />
                             ))}
-                        </>
-                    ) : (
-                        <EmptyState url={url} />
-                    )}
-                </div>
+                        </div>
+                    </>
+                ) : (
+                    <EmptyState url={url} />
+                )}
             </div>
         </>
     );
@@ -89,9 +91,9 @@ function EmptyState({ url }) {
     const [copied, copyToClipboard] = useCopyToClipboard(url);
 
     return (
-        <div className=" px-4 pt-6 flex flex-col mt-10 text-center border-t border-neutral-700">
+        <div className=" px-4 flex flex-col mt-10 text-center ">
             <div className="mx-auto">
-                <img src={plane} className="h-72" alt="" />
+                <img src={plane} className="h-52" alt="" />
             </div>
             <h1 className=" text-xl mt-4 font-bold leading-10">
                 No replies yet
@@ -112,8 +114,8 @@ function EmptyState({ url }) {
 
 function ReplyCard({ reply }) {
     return (
-        <div className="border-b-2 border-neutral-800 py-4 ">
-            <h2 className="text-lg">{reply}</h2>
+        <div className=" py-4 ">
+            <h2 className="text-md">{reply}</h2>
         </div>
     );
 }

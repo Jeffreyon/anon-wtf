@@ -127,11 +127,15 @@ function QuestionTextBox({ handleSubmit, handleClose, isSubmitting }) {
 
 function QuestionCard({ question }) {
     return (
-        <Link to={`/q/${question.id}`}>
-            <div className="border-b-2 border-neutral-800 py-4 ">
-                <h2 className="text-2xl text-neutral-100">{question.text}</h2>
-            </div>
-        </Link>
+        <div>
+            <Link to={`/q/${question.id}`}>
+                <div className="py-4 ">
+                    <h2 className="text-2xl text-neutral-100">
+                        {question.text}
+                    </h2>
+                </div>
+            </Link>
+        </div>
     );
 }
 
@@ -141,7 +145,7 @@ function AllQuestions({ questions, handleClick }) {
             <h3 className=" text-lg font-semibold text-neutral-300">
                 Your questions
             </h3>
-            <div className="mt-6">
+            <div className="mt-6 divide-y divide-neutral-700">
                 {questions.map((q, ii) => (
                     <QuestionCard question={q} key={ii} />
                 ))}
@@ -155,7 +159,7 @@ function AllQuestions({ questions, handleClick }) {
 
 function EmptyState({ handleClick }) {
     return (
-        <div className=" px-4 flex flex-col gap-6 mt-24 text-center">
+        <div className=" px-4 flex flex-col gap-6 mt-12 text-center max-w-md mx-auto">
             <div className="mx-auto">
                 <img
                     src={simpleSvgPlaceholder({
@@ -170,7 +174,7 @@ function EmptyState({ handleClick }) {
             </h1>
             <p className=" text-neutral-300">
                 Listen to secrets, find ways you can improve yourself or get
-                opinions on anything.
+                opinions on anything, anonymously
             </p>
             <Button onClick={() => handleClick()} label="Create" />
         </div>

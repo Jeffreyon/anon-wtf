@@ -91,7 +91,7 @@ function ReplyQuestion() {
                     </div>
                 ) : (
                     <>
-                        <div className="bg-neutral-900 px-4 py-6 sm:p-8 rounded-2xl border border-neutral-700">
+                        <div className="bg-neutral-900 px-4 py-6 sm:p-8 rounded-2xl border border-neutral-700 ">
                             <p className="mb-4 text-amber-300">
                                 {userName} asked,
                             </p>
@@ -110,17 +110,17 @@ function ReplyQuestion() {
                                     </button>
                                 </div>
                             </div>
-                            <div className="mt-10 pt-10 text-center border-t border-neutral-700">
-                                <Button
-                                    onClick={() => toggleDrawer(true)}
-                                    label="Reply anonymously"
-                                />
-                                <p className="mt-4 text-neutral-500">
-                                    No sign in needed
-                                </p>
-                            </div>
                         </div>
-                        <p className="text-center mt-8 text-sm text-neutral-400">
+                        <div className="mt-10 text-center">
+                            <Button
+                                onClick={() => toggleDrawer(true)}
+                                label="Reply anonymously"
+                            />
+                            <p className="mt-4 text-neutral-500">
+                                No sign in needed
+                            </p>
+                        </div>
+                        <p className="text-center mt-16 text-sm text-neutral-400">
                             <span className="block sm:inline">
                                 Curious to know what people really think?
                             </span>
