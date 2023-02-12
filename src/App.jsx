@@ -54,7 +54,9 @@ function App() {
                             </RequiresAuth>
                         }
                     />
-                    <Route path="/r/:qid" element={<ReplyQuestion />} />
+                    <Route element={<AuthLayout />}>
+                        <Route path="/r/:qid" element={<ReplyQuestion />} />
+                    </Route>
                 </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>

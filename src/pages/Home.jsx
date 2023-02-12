@@ -1,4 +1,3 @@
-import simpleSvgPlaceholder from "@cloudfour/simple-svg-placeholder";
 import ButtonLink from "../components/ButtonLink";
 import iphoneImage from "../assets/iphone.png";
 
