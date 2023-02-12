@@ -23,8 +23,8 @@ function Navbar() {
                     <Link
                         to="/"
                         className=" font-mono font-semibold text-2xl text-white">
-                        <span>anon</span>
-                        <span className="text-lime-400">.wtf</span>
+                        <span className="text-lime-400">anon</span>
+                        <span className=" text-neutral-400">.wtf</span>
                     </Link>
                 </div>
                 <div className="hidden md:flex gap-4">
