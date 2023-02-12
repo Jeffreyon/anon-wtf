@@ -7,6 +7,7 @@ import pb from "../lib/pocketbase";
 import SignInMethod from "../components/SignInMethod";
 import ErrorText from "../components/ErrorText";
 import PromptDrawer from "../components/PromptDrawer";
+import { toast } from "react-toastify";
 
 function LogIn() {
     const [drawerOpen, toggleDrawer] = useState(false);
@@ -23,6 +24,16 @@ function LogIn() {
 
             setIsSubmitting(false);
             toggleDrawer(false);
+
+            toast.success("Logged in", {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "light",
+            });
 
             navigate("/questions");
         } catch (error) {
