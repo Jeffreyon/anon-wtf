@@ -18,8 +18,8 @@ function App() {
             <Routes>
                 <Route element={<Layout />}>
                     <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
                     <Route element={<AuthLayout />}>
+                        <Route path="/about" element={<About />} />
                         <Route
                             path="/sign-up"
                             element={
@@ -54,8 +54,8 @@ function App() {
                             </RequiresAuth>
                         }
                     />
+                    <Route path="*" element={<NotFound />} />
                 </Route>
-                <Route path="*" element={<NotFound />} />
             </Routes>
         </Router>
     );

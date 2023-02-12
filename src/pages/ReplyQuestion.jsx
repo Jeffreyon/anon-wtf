@@ -116,19 +116,16 @@ function ReplyQuestion() {
                                 onClick={() => toggleDrawer(true)}
                                 label="Reply anonymously"
                             />
-                            <p className="mt-4 text-neutral-500">
-                                No sign in needed
+                            <p className="text-center mt-8 text-sm text-neutral-400">
+                                <span className="block sm:inline">
+                                    Curious to know what people really think?
+                                </span>
+                                <LinkRegular
+                                    label="Ask a question"
+                                    linkTo="/sign-up"
+                                />
                             </p>
                         </div>
-                        <p className="text-center mt-16 text-sm text-neutral-400">
-                            <span className="block sm:inline">
-                                Curious to know what people really think?
-                            </span>
-                            <LinkRegular
-                                label="Ask a question"
-                                linkTo="/sign-up"
-                            />
-                        </p>
                     </>
                 )}
             </div>
