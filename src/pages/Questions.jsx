@@ -69,7 +69,7 @@ function Questions() {
             <div>
                 {loading ? (
                     <LoadingComponent loading={loading} />
-                ) : questions.length ? (
+                ) : questions ? (
                     <AllQuestions
                         handleClick={() => toggleDrawer(true)}
                         questions={questions}
@@ -142,19 +142,18 @@ function QuestionCard({ question }) {
 function AllQuestions({ questions, handleClick }) {
     return (
         <div className="mt-8">
-            <h3 className=" text-lg font-semibold text-neutral-300">
-                Your questions
-            </h3>
+            <div className="flex justify-between items-center">
+                <h3 className=" text-lg font-semibold text-neutral-300">
+                    Your questions
+                </h3>
+                <div className="text-center">
+                    <Button onClick={() => handleClick()} label="Ask" />
+                </div>
+            </div>
             <div className="mt-6 divide-y divide-neutral-700">
                 {questions.map((q, ii) => (
                     <QuestionCard question={q} key={ii} />
                 ))}
-            </div>
-            <div className="mt-8 text-center">
-                <Button
-                    onClick={() => handleClick()}
-                    label="Ask new question"
-                />
             </div>
         </div>
     );
