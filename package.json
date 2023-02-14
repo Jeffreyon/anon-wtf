@@ -5,6 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
+        "server": "cd pb && pocketbase serve",
         "build": "vite build",
         "preview": "vite preview"
     },
