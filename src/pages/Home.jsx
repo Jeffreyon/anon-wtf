@@ -4,7 +4,7 @@ import iphoneImage from "../assets/iphone.png";
 function Home() {
     return (
         <div className="md:flex md:gap-12 mt-12 md:mt-16">
-            <div className="bg-rose-100 w-100 md:w-1/2 h-96 overflow-hidden rounded-b-lg rounded-t-3xl border-2 border-red-100">
+            <div className="bg-rose-100 w-100 md:w-1/2 h-72 md:h-96 overflow-hidden rounded-b-lg rounded-t-3xl border-2 border-red-100">
                 <img src={iphoneImage} alt="iphone" className=" home-image" />
             </div>
             <div className="flex flex-col gap-6 mt-12 mx-auto md:mx-0 md:my-auto max-w-md text-center md:text-left md:items-start md:w-1/2">
